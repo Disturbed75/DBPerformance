@@ -1,0 +1,38 @@
+version: '3.6'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    container_name: mysql-container
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3306:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/log:/var/log/mysql
+
+
+volumes:
+  my-db:
+
+
+
+#  nginx-cache-app:
+#    container_name: nginx-cache-app-container
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    image: nginx-cache:latest
+#    depends_on:
+#      - nginx
+#    ports:
+#      - '127.0.0.1:8081:8081'
+
+
